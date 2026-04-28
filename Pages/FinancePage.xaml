@@ -1,0 +1,161 @@
+﻿<Page x:Class="BathComplex.Pages.FinancePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BathComplex.Pages"
+      mc:Ignorable="d" 
+      Title="Финансы"
+      Background="#1A1A1A">
+
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/Styles.xaml"/>
+    </Page.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <Label Content="Финансы" Style="{StaticResource TitleLabel}"/>
+            <Label Content="Доходы и расходы банного комплекса" Foreground="#A09888" FontSize="14"/>
+        </StackPanel>
+
+        <!-- Период -->
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,0,0,15">
+            <StackPanel>
+                <Label Content="Выберите период" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <DatePicker x:Name="dpStartDate" Width="150"
+                                Foreground="#F5F0E8" Background="#3C3C3C" 
+                                BorderBrush="#555555" BorderThickness="1"/>
+                    <Label Content="—" Foreground="#A09888" FontSize="16" VerticalAlignment="Center" Margin="15,0"/>
+                    <DatePicker x:Name="dpEndDate" Width="150"
+                                Foreground="#F5F0E8" Background="#3C3C3C" 
+                                BorderBrush="#555555" BorderThickness="1"/>
+                    <Button x:Name="btnApplyFilter" Content="Применить"
+                            Style="{StaticResource GoldButton}" Margin="15,0,0,0"
+                            Click="btnApplyFilter_Click"/>
+                    <Button x:Name="btnThisMonth" Content="Текущий месяц"
+                            Style="{StaticResource OutlineButton}" Margin="10,0,0,0"
+                            Click="btnThisMonth_Click"/>
+                    <Button x:Name="btnThisYear" Content="Текущий год"
+                            Style="{StaticResource OutlineButton}" Margin="10,0,0,0"
+                            Click="btnThisYear_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Карточки с итогами -->
+        <Grid Grid.Row="2" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Доходы -->
+            <Border Grid.Column="0" Style="{StaticResource CardBorder}">
+                <StackPanel>
+                    <Label Content="ДОХОДЫ" Foreground="#6B8E5A" FontSize="13" FontWeight="SemiBold"/>
+                    <Label x:Name="lblTotalIncome" Content="0 " 
+                           Foreground="#F5F0E8" FontSize="28" FontWeight="Bold"/>
+                    <Label Content="за выбранный период" Foreground="#A09888" FontSize="12"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Расходы -->
+            <Border Grid.Column="2" Style="{StaticResource CardBorder}">
+                <StackPanel>
+                    <Label Content="РАСХОДЫ" Foreground="#B85450" FontSize="13" FontWeight="SemiBold"/>
+                    <Label x:Name="lblTotalExpenses" Content="0 " 
+                           Foreground="#F5F0E8" FontSize="28" FontWeight="Bold"/>
+                    <Label Content="за выбранный период" Foreground="#A09888" FontSize="12"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Прибыль -->
+            <Border Grid.Column="4" Style="{StaticResource CardBorder}">
+                <StackPanel>
+                    <Label Content="ПРИБЫЛЬ" Foreground="#C5A46B" FontSize="13" FontWeight="SemiBold"/>
+                    <Label x:Name="lblProfit" Content="0 " 
+                           Foreground="#F5F0E8" FontSize="28" FontWeight="Bold"/>
+                    <Label Content="за выбранный период" Foreground="#A09888" FontSize="12"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Вкладки -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,15">
+            <Button x:Name="btnTabIncome" Content="📈 Доходы"
+                    Style="{StaticResource OutlineButton}"
+                    Width="140" Click="btnTabIncome_Click"/>
+            <Button x:Name="btnTabExpenses" Content="📉 Расходы"
+                    Style="{StaticResource OutlineButton}"
+                    Width="140" Margin="10,0,0,0" Click="btnTabExpenses_Click"/>
+            <Button x:Name="btnAddExpense" Content="+ Добавить расход"
+                    Style="{StaticResource GoldButton}" Margin="30,0,0,0"
+                    Click="btnAddExpense_Click"/>
+        </StackPanel>
+
+        <!-- Таблицы -->
+        <Grid Grid.Row="4">
+            <!-- Таблица доходов -->
+            <DataGrid x:Name="dgIncome" 
+                      Style="{StaticResource DarkDataGrid}"
+                      ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Visibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID брони" Binding="{Binding BookingID}" Width="80"/>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="140"/>
+                    <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="200"/>
+                    <DataGridTextColumn Header="Апартамент" Binding="{Binding ApartmentName}" Width="150"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat={}{0:N0}}" Width="130"/>
+                    <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethod}" Width="130"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Таблица расходов -->
+            <DataGrid x:Name="dgExpenses" 
+                      Style="{StaticResource DarkDataGrid}"
+                      ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Visibility="Collapsed">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ExpenseID}" Width="60"/>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding ExpenseDate, StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}" Width="180"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat={}{0:N0} }" Width="130"/>
+                    <DataGridTemplateColumn Header="Действия" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="btnEditExpense" Content="✏" Style="{StaticResource OutlineButton}"
+                                            Width="35" Height="30" Padding="0"
+                                            Click="btnEditExpense_Click"  Tag="{Binding ExpenseID}"/>
+                                    <Button x:Name="btnDeleteExpense" Content="🗑" Style="{StaticResource OutlineButton}"
+                                            Width="35" Height="30" Padding="0" Margin="5,0"
+                                            Foreground="#B85450" BorderBrush="#B85450"
+                                            Click="btnDeleteExpense_Click"  Tag="{Binding ExpenseID}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>

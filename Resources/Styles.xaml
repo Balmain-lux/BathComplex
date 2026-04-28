@@ -1,0 +1,172 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Цвета -->
+    <SolidColorBrush x:Key="BackgroundDark" Color="#1A1A1A"/>
+    <SolidColorBrush x:Key="BackgroundCard" Color="#2D2D2D"/>
+    <SolidColorBrush x:Key="BackgroundInput" Color="#3C3C3C"/>
+    <SolidColorBrush x:Key="AccentGold" Color="#C5A46B"/>
+    <SolidColorBrush x:Key="AccentGoldHover" Color="#D4B87A"/>
+    <SolidColorBrush x:Key="TextPrimary" Color="#F5F0E8"/>
+    <SolidColorBrush x:Key="TextSecondary" Color="#A09888"/>
+    <SolidColorBrush x:Key="AccentDiscount" Color="#C06040"/>
+    <SolidColorBrush x:Key="White" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="StatusFree" Color="#6B8E5A"/>
+    <SolidColorBrush x:Key="StatusBusy" Color="#B85450"/>
+    <SolidColorBrush x:Key="StatusReserved" Color="#C58C40"/>
+
+    <!-- Шрифты -->
+    <FontFamily x:Key="MainFont">Segoe UI</FontFamily>
+
+    <!-- Стиль для главных кнопок -->
+    <Style x:Key="GoldButton" TargetType="Button">
+        <Setter Property="Background" Value="#C5A46B"/>
+        <Setter Property="Foreground" Value="#1A1A1A"/>
+        <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="24,10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="4"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#D4B87A"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#B8945A"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Стиль для второстепенных кнопок -->
+    <Style x:Key="OutlineButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#C5A46B"/>
+        <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderBrush" Value="#C5A46B"/>
+        <Setter Property="BorderThickness" Value="1.5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="24,10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#2D2D2D"/>
+                <Setter Property="BorderBrush" Value="#D4B87A"/>
+                <Setter Property="Foreground" Value="#D4B87A"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Стиль для TextBox -->
+    <Style x:Key="DarkTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="#3C3C3C"/>
+        <Setter Property="Foreground" Value="#F5F0E8"/>
+        <Setter Property="BorderBrush" Value="#555555"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="10,8"/>
+        <Setter Property="CaretBrush" Value="#C5A46B"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="3">
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="#C5A46B"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Стиль для ComboBox -->
+    <Style x:Key="DarkComboBox" TargetType="ComboBox">
+        <Setter Property="Background" Value="#3C3C3C"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="#555555"/>
+        <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="10,8"/>
+    </Style>
+
+    <!-- Стиль для DataGrid -->
+    <Style x:Key="DarkDataGrid" TargetType="DataGrid">
+        <Setter Property="Background" Value="#2D2D2D"/>
+        <Setter Property="Foreground" Value="#F5F0E8"/>
+        <Setter Property="BorderBrush" Value="#3C3C3C"/>
+        <Setter Property="RowBackground" Value="#2D2D2D"/>
+        <Setter Property="AlternatingRowBackground" Value="#333333"/>
+        <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="#3C3C3C"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="ColumnHeaderHeight" Value="40"/>
+        <Setter Property="RowHeight" Value="36"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+    </Style>
+
+    <!-- Стиль для заголовка DataGrid -->
+    <Style x:Key="DarkDataGridHeader" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="#1A1A1A"/>
+        <Setter Property="Foreground" Value="#C5A46B"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Padding" Value="12,0"/>
+        <Setter Property="BorderBrush" Value="#3C3C3C"/>
+        <Setter Property="BorderThickness" Value="0,0,0,2"/>
+    </Style>
+
+    <!-- Стиль для Label -->
+    <Style x:Key="TitleLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#C5A46B"/>
+    </Style>
+
+    <Style x:Key="SubTitleLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource MainFont}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#F5F0E8"/>
+    </Style>
+
+    <Style x:Key="CardBorder" TargetType="Border">
+        <Setter Property="Background" Value="#2D2D2D"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="Margin" Value="0,5"/>
+    </Style>
+
+</ResourceDictionary>

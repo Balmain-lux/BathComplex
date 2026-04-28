@@ -1,0 +1,143 @@
+﻿<Page x:Class="BathComplex.Pages.ClientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BathComplex.Pages"
+      mc:Ignorable="d" 
+      Title="Клиенты"
+      Background="#1A1A1A">
+
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/Styles.xaml"/>
+    </Page.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <Label Content="Клиенты" Style="{StaticResource TitleLabel}"/>
+            <Label Content="Управление клиентской базой" Foreground="#A09888" FontSize="14"/>
+        </StackPanel>
+
+        <!-- Поиск и действия -->
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Поиск -->
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtSearch" Style="{StaticResource DarkTextBox}"
+                         Width="350" 
+                         Tag="Поиск по ФИО или телефону..."/>
+                <Button x:Name="btnSearch" Content="🔍 Найти"
+                        Style="{StaticResource OutlineButton}" Margin="10,0,0,0"
+                        Click="btnSearch_Click"/>
+                <Button x:Name="btnClearSearch" Content="✕ Сбросить"
+                        Style="{StaticResource OutlineButton}" Margin="10,0,0,0"
+                        Click="btnClearSearch_Click"/>
+            </StackPanel>
+
+            <!-- Кнопки действий -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button x:Name="btnAddClient" Content="+ Добавить клиента"
+                        Style="{StaticResource GoldButton}" Click="btnAddClient_Click"/>
+                <Button x:Name="btnRefresh" Content="🔄 Обновить"
+                        Style="{StaticResource OutlineButton}" Margin="10,0,0,0"
+                        Click="btnRefresh_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Информация о количестве -->
+        <Label x:Name="lblCount" Grid.Row="2" Foreground="#A09888" FontSize="13" Margin="0,0,0,10"/>
+
+        <!-- Таблица клиентов -->
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgClients"
+                      Style="{StaticResource DarkDataGrid}"
+                      ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
+                      AutoGenerateColumns="False"
+                      SelectionMode="Single"
+                      IsReadOnly="True"
+                      >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ClientID}" Width="50"/>
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="250"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="150"/>
+                    <DataGridTextColumn Header="Скидка %" Binding="{Binding DiscountPercent}" Width="100"/>
+                    <DataGridTextColumn Header="Дата регистрации" 
+                                       Binding="{Binding RegistrationDate, StringFormat={}{0:dd.MM.yyyy}}" 
+                                       Width="130"/>
+                    <DataGridTextColumn Header="Кол-во визитов" Binding="{Binding VisitCount}" Width="120"/>
+                    <DataGridTextColumn Header="Общая сумма" 
+                                       Binding="{Binding TotalSpent, StringFormat={}{0:N0} }" 
+                                       Width="150"/>
+                    <DataGridTemplateColumn Header="Действия" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="btnEditClient" Content="✏" Style="{StaticResource OutlineButton}"
+                                            Width="35" Height="30" Padding="0"
+                                            Click="btnEditClient_Click"  Tag="{Binding ClientID}"/>
+                                    <Button x:Name="btnClientHistory" Content="📋" Style="{StaticResource OutlineButton}"
+                                            Width="35" Height="30" Padding="0" Margin="5,0"
+                                            Click="btnClientHistory_Click"  Tag="{Binding ClientID}"
+                                            ToolTip="История визитов"/>
+                                    <Button x:Name="btnDeleteClient" Content="🗑" Style="{StaticResource OutlineButton}"
+                                            Width="35" Height="30" Padding="0" Margin="5,0"
+                                            Foreground="#B85450" BorderBrush="#B85450"
+                                            Click="btnDeleteClient_Click"  Tag="{Binding ClientID}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!-- Панель истории визитов (скрыта по умолчанию) -->
+        <Border x:Name="historyPanel" Grid.Row="4" Background="#2D2D2D"
+                CornerRadius="6" Padding="20" Margin="0,20,0,0" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <Label x:Name="lblHistoryTitle" Content="История визитов клиента"
+                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                    <Button x:Name="btnCloseHistory" Content="✕ Закрыть"
+                            Style="{StaticResource OutlineButton}" 
+                            HorizontalAlignment="Right" Margin="20,0,0,0"
+                            Click="btnCloseHistory_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="dgClientHistory" Grid.Row="1"
+                          Style="{StaticResource DarkDataGrid}"
+                          ColumnHeaderStyle="{StaticResource DarkDataGridHeader}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          MaxHeight="250">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding VisitDate, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="150"/>
+                        <DataGridTextColumn Header="Апартамент" Binding="{Binding ApartmentName}" Width="150"/>
+                        <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat={}{0:N0} }" Width="120"/>
+                        <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethod}" Width="130"/>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

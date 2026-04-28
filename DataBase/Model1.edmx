@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BathComplexDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApartmentPricing">
+          <Key>
+            <PropertyRef Name="PricingID" />
+          </Key>
+          <Property Name="PricingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApartmentID" Type="int" Nullable="false" />
+          <Property Name="DayType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PricePerHour" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="ApartmentID" />
+          </Key>
+          <Property Name="ApartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ApartmentStatuses">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApartmentStatusLog">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApartmentID" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="SetByUserID" Type="int" Nullable="false" />
+          <Property Name="SetTime" Type="datetime" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Bookings">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="ApartmentID" Type="int" Nullable="false" />
+          <Property Name="BookingDate" Type="date" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="ActualStartTime" Type="datetime" />
+          <Property Name="ActualEndTime" Type="datetime" />
+          <Property Name="CreatedByUserID" Type="int" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DiscountApplied" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FinalAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BookingServices">
+          <Key>
+            <PropertyRef Name="BookingServiceID" />
+          </Key>
+          <Property Name="BookingServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingID" Type="int" Nullable="false" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="PricePerUnit" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="21" Scale="2" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DiscountPercent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RegistrationDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ExpenseCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expenses">
+          <Key>
+            <PropertyRef Name="ExpenseID" />
+          </Key>
+          <Property Name="ExpenseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ExpenseDate" Type="date" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="CreatedByUserID" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "BathComplexDB.dbo.V_DailyFinanceSummary" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="V_DailyFinanceSummary">
+          <Key>
+            <PropertyRef Name="Income" />
+            <PropertyRef Name="Expenses" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="Income" Type="decimal" Precision="38" Scale="2" Nullable="false" />
+          <Property Name="Expenses" Type="decimal" Precision="38" Scale="2" Nullable="false" />
+          <Property Name="Profit" Type="decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "BathComplexDB.dbo.V_ExpensesByDay" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="V_ExpensesByDay">
+          <Key>
+            <PropertyRef Name="ExpenseDate" />
+          </Key>
+          <Property Name="ExpenseDate" Type="date" Nullable="false" />
+          <Property Name="TotalExpenses" Type="decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "BathComplexDB.dbo.V_IncomeByDay" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="V_IncomeByDay">
+          <Property Name="IncomeDate" Type="date" />
+          <Property Name="TotalIncome" Type="decimal" Precision="38" Scale="2" />
+        </EntityType>-->
+        <Association Name="FK__Apartment__Apart__6477ECF3">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="ApartmentPricing" Type="Self.ApartmentPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="ApartmentPricing">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Apartment__Apart__6EF57B66">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="ApartmentStatusLog" Type="Self.ApartmentStatusLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="ApartmentStatusLog">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Apartment__SetBy__70DDC3D8">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ApartmentStatusLog" Type="Self.ApartmentStatusLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApartmentStatusLog">
+              <PropertyRef Name="SetByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Apartment__Statu__6FE99F9F">
+          <End Role="ApartmentStatuses" Type="Self.ApartmentStatuses" Multiplicity="1" />
+          <End Role="ApartmentStatusLog" Type="Self.ApartmentStatusLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApartmentStatuses">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ApartmentStatusLog">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__Apartm__6A30C649">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__Client__693CA210">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__Create__6B24EA82">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookingSe__Booki__74AE54BC">
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="1" />
+          <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bookings">
+              <PropertyRef Name="BookingID" />
+            </Principal>
+            <Dependent Role="BookingServices">
+              <PropertyRef Name="BookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookingSe__Servi__75A278F5">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="BookingServices">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Catego__7B5B524B">
+          <End Role="ExpenseCategories" Type="Self.ExpenseCategories" Multiplicity="0..1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Create__7C4F7684">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Services__Catego__5FB337D6">
+          <End Role="ServiceCategories" Type="Self.ServiceCategories" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleID__4E88ABD4">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BathComplexDBModelContainer">
+          <EntitySet Name="ApartmentPricing" EntityType="Self.ApartmentPricing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApartmentStatuses" EntityType="Self.ApartmentStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApartmentStatusLog" EntityType="Self.ApartmentStatusLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingServices" EntityType="Self.BookingServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenseCategories" EntityType="Self.ExpenseCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expenses" EntityType="Self.Expenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceCategories" EntityType="Self.ServiceCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_DailyFinanceSummary" EntityType="Self.V_DailyFinanceSummary" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_DailyFinanceSummary].[Date] AS [Date], 
+    [V_DailyFinanceSummary].[Income] AS [Income], 
+    [V_DailyFinanceSummary].[Expenses] AS [Expenses], 
+    [V_DailyFinanceSummary].[Profit] AS [Profit]
+    FROM [dbo].[V_DailyFinanceSummary] AS [V_DailyFinanceSummary]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_ExpensesByDay" EntityType="Self.V_ExpensesByDay" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_ExpensesByDay].[ExpenseDate] AS [ExpenseDate], 
+    [V_ExpensesByDay].[TotalExpenses] AS [TotalExpenses]
+    FROM [dbo].[V_ExpensesByDay] AS [V_ExpensesByDay]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Apartment__Apart__6477ECF3" Association="Self.FK__Apartment__Apart__6477ECF3">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ApartmentPricing" EntitySet="ApartmentPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Apartment__Apart__6EF57B66" Association="Self.FK__Apartment__Apart__6EF57B66">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ApartmentStatusLog" EntitySet="ApartmentStatusLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Apartment__SetBy__70DDC3D8" Association="Self.FK__Apartment__SetBy__70DDC3D8">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApartmentStatusLog" EntitySet="ApartmentStatusLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Apartment__Statu__6FE99F9F" Association="Self.FK__Apartment__Statu__6FE99F9F">
+            <End Role="ApartmentStatuses" EntitySet="ApartmentStatuses" />
+            <End Role="ApartmentStatusLog" EntitySet="ApartmentStatusLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__Apartm__6A30C649" Association="Self.FK__Bookings__Apartm__6A30C649">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__Client__693CA210" Association="Self.FK__Bookings__Client__693CA210">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__Create__6B24EA82" Association="Self.FK__Bookings__Create__6B24EA82">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookingSe__Booki__74AE54BC" Association="Self.FK__BookingSe__Booki__74AE54BC">
+            <End Role="Bookings" EntitySet="Bookings" />
+            <End Role="BookingServices" EntitySet="BookingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookingSe__Servi__75A278F5" Association="Self.FK__BookingSe__Servi__75A278F5">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="BookingServices" EntitySet="BookingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Catego__7B5B524B" Association="Self.FK__Expenses__Catego__7B5B524B">
+            <End Role="ExpenseCategories" EntitySet="ExpenseCategories" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Create__7C4F7684" Association="Self.FK__Expenses__Create__7C4F7684">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Services__Catego__5FB337D6" Association="Self.FK__Services__Catego__5FB337D6">
+            <End Role="ServiceCategories" EntitySet="ServiceCategories" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleID__4E88ABD4" Association="Self.FK__Users__RoleID__4E88ABD4">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BathComplexDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApartmentPricing">
+          <Key>
+            <PropertyRef Name="PricingID" />
+          </Key>
+          <Property Name="PricingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApartmentID" Type="Int32" Nullable="false" />
+          <Property Name="DayType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PricePerHour" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Apartment__Apart__6477ECF3" FromRole="ApartmentPricing" ToRole="Apartments" />
+        </EntityType>
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="ApartmentID" />
+          </Key>
+          <Property Name="ApartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="ApartmentPricing" Relationship="Self.FK__Apartment__Apart__6477ECF3" FromRole="Apartments" ToRole="ApartmentPricing" />
+          <NavigationProperty Name="ApartmentStatusLog" Relationship="Self.FK__Apartment__Apart__6EF57B66" FromRole="Apartments" ToRole="ApartmentStatusLog" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__Apartm__6A30C649" FromRole="Apartments" ToRole="Bookings" />
+        </EntityType>
+        <EntityType Name="ApartmentStatuses">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApartmentStatusLog" Relationship="Self.FK__Apartment__Statu__6FE99F9F" FromRole="ApartmentStatuses" ToRole="ApartmentStatusLog" />
+        </EntityType>
+        <EntityType Name="ApartmentStatusLog">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApartmentID" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="SetByUserID" Type="Int32" Nullable="false" />
+          <Property Name="SetTime" Type="DateTime" Precision="3" />
+          <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Apartment__Apart__6EF57B66" FromRole="ApartmentStatusLog" ToRole="Apartments" />
+          <NavigationProperty Name="ApartmentStatuses" Relationship="Self.FK__Apartment__Statu__6FE99F9F" FromRole="ApartmentStatusLog" ToRole="ApartmentStatuses" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Apartment__SetBy__70DDC3D8" FromRole="ApartmentStatusLog" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Bookings">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="ApartmentID" Type="Int32" Nullable="false" />
+          <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ActualStartTime" Type="DateTime" Precision="3" />
+          <Property Name="ActualEndTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DiscountApplied" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FinalAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Bookings__Apartm__6A30C649" FromRole="Bookings" ToRole="Apartments" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Bookings__Client__693CA210" FromRole="Bookings" ToRole="Clients" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Bookings__Create__6B24EA82" FromRole="Bookings" ToRole="Users" />
+          <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__Booki__74AE54BC" FromRole="Bookings" ToRole="BookingServices" />
+        </EntityType>
+        <EntityType Name="BookingServices">
+          <Key>
+            <PropertyRef Name="BookingServiceID" />
+          </Key>
+          <Property Name="BookingServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="PricePerUnit" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="21" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__BookingSe__Booki__74AE54BC" FromRole="BookingServices" ToRole="Bookings" />
+          <NavigationProperty Name="Services" Relationship="Self.FK__BookingSe__Servi__75A278F5" FromRole="BookingServices" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiscountPercent" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__Client__693CA210" FromRole="Clients" ToRole="Bookings" />
+        </EntityType>
+        <EntityType Name="ExpenseCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expenses__Catego__7B5B524B" FromRole="ExpenseCategories" ToRole="Expenses" />
+        </EntityType>
+        <EntityType Name="Expenses">
+          <Key>
+            <PropertyRef Name="ExpenseID" />
+          </Key>
+          <Property Name="ExpenseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ExpenseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ExpenseCategories" Relationship="Self.FK__Expenses__Catego__7B5B524B" FromRole="Expenses" ToRole="ExpenseCategories" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Expenses__Create__7C4F7684" FromRole="Expenses" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleID__4E88ABD4" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ServiceCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Services" Relationship="Self.FK__Services__Catego__5FB337D6" FromRole="ServiceCategories" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__Servi__75A278F5" FromRole="Services" ToRole="BookingServices" />
+          <NavigationProperty Name="ServiceCategories" Relationship="Self.FK__Services__Catego__5FB337D6" FromRole="Services" ToRole="ServiceCategories" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="ApartmentStatusLog" Relationship="Self.FK__Apartment__SetBy__70DDC3D8" FromRole="Users" ToRole="ApartmentStatusLog" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__Create__6B24EA82" FromRole="Users" ToRole="Bookings" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expenses__Create__7C4F7684" FromRole="Users" ToRole="Expenses" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleID__4E88ABD4" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="V_DailyFinanceSummary">
+          <Key>
+            <PropertyRef Name="Income" />
+            <PropertyRef Name="Expenses" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Income" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+          <Property Name="Expenses" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+          <Property Name="Profit" Type="Decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <EntityType Name="V_ExpensesByDay">
+          <Key>
+            <PropertyRef Name="ExpenseDate" />
+          </Key>
+          <Property Name="ExpenseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TotalExpenses" Type="Decimal" Precision="38" Scale="2" />
+        </EntityType>
+        <Association Name="FK__Apartment__Apart__6477ECF3">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="ApartmentPricing" Type="Self.ApartmentPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="ApartmentPricing">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Apartment__Apart__6EF57B66">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="ApartmentStatusLog" Type="Self.ApartmentStatusLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="ApartmentStatusLog">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__Apartm__6A30C649">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Apartment__Statu__6FE99F9F">
+          <End Role="ApartmentStatuses" Type="Self.ApartmentStatuses" Multiplicity="1" />
+          <End Role="ApartmentStatusLog" Type="Self.ApartmentStatusLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApartmentStatuses">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ApartmentStatusLog">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Apartment__SetBy__70DDC3D8">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ApartmentStatusLog" Type="Self.ApartmentStatusLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApartmentStatusLog">
+              <PropertyRef Name="SetByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__Client__693CA210">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__Create__6B24EA82">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookingSe__Booki__74AE54BC">
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="1" />
+          <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bookings">
+              <PropertyRef Name="BookingID" />
+            </Principal>
+            <Dependent Role="BookingServices">
+              <PropertyRef Name="BookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookingSe__Servi__75A278F5">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="BookingServices">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Catego__7B5B524B">
+          <End Role="ExpenseCategories" Type="Self.ExpenseCategories" Multiplicity="0..1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Create__7C4F7684">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleID__4E88ABD4">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Services__Catego__5FB337D6">
+          <End Role="ServiceCategories" Type="Self.ServiceCategories" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BathComplexDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApartmentPricing" EntityType="Self.ApartmentPricing" />
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" />
+          <EntitySet Name="ApartmentStatuses" EntityType="Self.ApartmentStatuses" />
+          <EntitySet Name="ApartmentStatusLog" EntityType="Self.ApartmentStatusLog" />
+          <EntitySet Name="Bookings" EntityType="Self.Bookings" />
+          <EntitySet Name="BookingServices" EntityType="Self.BookingServices" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="ExpenseCategories" EntityType="Self.ExpenseCategories" />
+          <EntitySet Name="Expenses" EntityType="Self.Expenses" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="ServiceCategories" EntityType="Self.ServiceCategories" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="V_DailyFinanceSummary" EntityType="Self.V_DailyFinanceSummary" />
+          <EntitySet Name="V_ExpensesByDay" EntityType="Self.V_ExpensesByDay" />
+          <AssociationSet Name="FK__Apartment__Apart__6477ECF3" Association="Self.FK__Apartment__Apart__6477ECF3">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ApartmentPricing" EntitySet="ApartmentPricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Apartment__Apart__6EF57B66" Association="Self.FK__Apartment__Apart__6EF57B66">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ApartmentStatusLog" EntitySet="ApartmentStatusLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__Apartm__6A30C649" Association="Self.FK__Bookings__Apartm__6A30C649">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Apartment__Statu__6FE99F9F" Association="Self.FK__Apartment__Statu__6FE99F9F">
+            <End Role="ApartmentStatuses" EntitySet="ApartmentStatuses" />
+            <End Role="ApartmentStatusLog" EntitySet="ApartmentStatusLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Apartment__SetBy__70DDC3D8" Association="Self.FK__Apartment__SetBy__70DDC3D8">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApartmentStatusLog" EntitySet="ApartmentStatusLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__Client__693CA210" Association="Self.FK__Bookings__Client__693CA210">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__Create__6B24EA82" Association="Self.FK__Bookings__Create__6B24EA82">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookingSe__Booki__74AE54BC" Association="Self.FK__BookingSe__Booki__74AE54BC">
+            <End Role="Bookings" EntitySet="Bookings" />
+            <End Role="BookingServices" EntitySet="BookingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookingSe__Servi__75A278F5" Association="Self.FK__BookingSe__Servi__75A278F5">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="BookingServices" EntitySet="BookingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Catego__7B5B524B" Association="Self.FK__Expenses__Catego__7B5B524B">
+            <End Role="ExpenseCategories" EntitySet="ExpenseCategories" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Create__7C4F7684" Association="Self.FK__Expenses__Create__7C4F7684">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleID__4E88ABD4" Association="Self.FK__Users__RoleID__4E88ABD4">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Services__Catego__5FB337D6" Association="Self.FK__Services__Catego__5FB337D6">
+            <End Role="ServiceCategories" EntitySet="ServiceCategories" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BathComplexDBModelContainer" CdmEntityContainer="BathComplexDBEntities">
+          <EntitySetMapping Name="ApartmentPricing">
+            <EntityTypeMapping TypeName="BathComplexDBModel.ApartmentPricing">
+              <MappingFragment StoreEntitySet="ApartmentPricing">
+                <ScalarProperty Name="PricingID" ColumnName="PricingID" />
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="DayType" ColumnName="DayType" />
+                <ScalarProperty Name="PricePerHour" ColumnName="PricePerHour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apartments">
+            <EntityTypeMapping TypeName="BathComplexDBModel.Apartments">
+              <MappingFragment StoreEntitySet="Apartments">
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApartmentStatuses">
+            <EntityTypeMapping TypeName="BathComplexDBModel.ApartmentStatuses">
+              <MappingFragment StoreEntitySet="ApartmentStatuses">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApartmentStatusLog">
+            <EntityTypeMapping TypeName="BathComplexDBModel.ApartmentStatusLog">
+              <MappingFragment StoreEntitySet="ApartmentStatusLog">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="SetByUserID" ColumnName="SetByUserID" />
+                <ScalarProperty Name="SetTime" ColumnName="SetTime" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="BathComplexDBModel.Bookings">
+              <MappingFragment StoreEntitySet="Bookings">
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ActualStartTime" ColumnName="ActualStartTime" />
+                <ScalarProperty Name="ActualEndTime" ColumnName="ActualEndTime" />
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="DiscountApplied" ColumnName="DiscountApplied" />
+                <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingServices">
+            <EntityTypeMapping TypeName="BathComplexDBModel.BookingServices">
+              <MappingFragment StoreEntitySet="BookingServices">
+                <ScalarProperty Name="BookingServiceID" ColumnName="BookingServiceID" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="BathComplexDBModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseCategories">
+            <EntityTypeMapping TypeName="BathComplexDBModel.ExpenseCategories">
+              <MappingFragment StoreEntitySet="ExpenseCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="BathComplexDBModel.Expenses">
+              <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="ExpenseID" ColumnName="ExpenseID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="BathComplexDBModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceCategories">
+            <EntityTypeMapping TypeName="BathComplexDBModel.ServiceCategories">
+              <MappingFragment StoreEntitySet="ServiceCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="BathComplexDBModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BathComplexDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_DailyFinanceSummary">
+            <EntityTypeMapping TypeName="BathComplexDBModel.V_DailyFinanceSummary">
+              <MappingFragment StoreEntitySet="V_DailyFinanceSummary">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+                <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_ExpensesByDay">
+            <EntityTypeMapping TypeName="BathComplexDBModel.V_ExpensesByDay">
+              <MappingFragment StoreEntitySet="V_ExpensesByDay">
+                <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+                <ScalarProperty Name="TotalExpenses" ColumnName="TotalExpenses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

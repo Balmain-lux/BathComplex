@@ -1,0 +1,90 @@
+﻿<Window x:Class="BathComplex.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BathComplex"
+        mc:Ignorable="d"
+        Title="Банные Апартаменты - Система управления"
+        Height="900" Width="1400"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="#1A1A1A">
+
+    <Window.Resources>
+        <ResourceDictionary Source="Resources/Styles.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Боковое меню -->
+        <Border Grid.Column="0" Background="#1D1D1D" BorderBrush="#2D2D2D" BorderThickness="0,0,1,0">
+            <StackPanel Margin="0,30,0,0">
+
+                <!-- Логотип / Название -->
+                <Label Content="БАННЫЕ" Foreground="#C5A46B" FontSize="20" FontWeight="Bold"
+                       HorizontalAlignment="Center" FontFamily="{StaticResource MainFont}"/>
+                <Label Content="АПАРТАМЕНТЫ" Foreground="#F5F0E8" FontSize="14"
+                       HorizontalAlignment="Center" Margin="0,0,0,30" FontFamily="{StaticResource MainFont}"/>
+
+                <!-- Кнопки меню -->
+                <Button x:Name="btnApartments" Content="🏠 Апартаменты"
+                        Style="{StaticResource OutlineButton}"
+                        Margin="20,5" BorderThickness="0"
+                        Foreground="#F5F0E8" FontSize="15"
+                        HorizontalAlignment="Stretch"
+                        Click="btnApartments_Click"/>
+
+                <Button x:Name="btnClients" Content="👥 Клиенты"
+                        Style="{StaticResource OutlineButton}"
+                        Margin="20,5" BorderThickness="0"
+                        Foreground="#F5F0E8" FontSize="15"
+                        HorizontalAlignment="Stretch"
+                        Click="btnClients_Click"/>
+
+                <Button x:Name="btnBooking" Content="📋 Бронирование"
+                        Style="{StaticResource OutlineButton}"
+                        Margin="20,5" BorderThickness="0"
+                        Foreground="#F5F0E8" FontSize="15"
+                        HorizontalAlignment="Stretch"
+                        Click="btnBooking_Click"/>
+
+                <Button x:Name="btnFinance" Content="💰 Финансы"
+                        Style="{StaticResource OutlineButton}"
+                        Margin="20,5" BorderThickness="0"
+                        Foreground="#F5F0E8" FontSize="15"
+                        HorizontalAlignment="Stretch"
+                        Click="btnFinance_Click"/>
+
+                <Button x:Name="btnAnalytics" Content="📊 Аналитика"
+                        Style="{StaticResource OutlineButton}"
+                        Margin="20,5" BorderThickness="0"
+                        Foreground="#F5F0E8" FontSize="15"
+                        HorizontalAlignment="Stretch"
+                        Click="btnAnalytics_Click"/>
+
+                <!-- Разделитель -->
+                <Border Height="1" Background="#3C3C3C" Margin="20,20"/>
+
+                <!-- Информация о пользователе -->
+                <Label x:Name="lblUserName" Foreground="#A09888" FontSize="12"
+                       HorizontalAlignment="Center" Margin="0,10"/>
+                <Label x:Name="lblUserRole" Foreground="#C5A46B" FontSize="11"
+                       HorizontalAlignment="Center"/>
+
+                <Button x:Name="btnExit" Content="Выход" Style="{StaticResource OutlineButton}"
+                        Margin="20,20" HorizontalAlignment="Stretch"
+                        Foreground="#B85450" BorderBrush="#B85450"
+                        Click="btnExit_Click"/>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Основная область -->
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>
