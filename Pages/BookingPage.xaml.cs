@@ -97,7 +97,7 @@ namespace BathComplex.Pages
             var pricing = Connection.db.ApartmentPricing
                 .FirstOrDefault(p => p.ApartmentID == aptId && p.DayType == dayType);
             decimal pricePerHour = pricing?.PricePerHour ?? 0;
-            lblPricePerHour.Content = $"{pricePerHour:N0} ₸/час";
+            lblPricePerHour.Content = $"{pricePerHour:N0} р/час";
 
             // Расчет часов
             TimeSpan startTs, endTs;
@@ -108,7 +108,7 @@ namespace BathComplex.Pages
                 if (totalHours <= 0) totalHours = 1;
 
                 decimal apartmentCost = pricePerHour * (decimal)totalHours;
-                lblApartmentCost.Content = $"{apartmentCost:N0} ₸";
+                lblApartmentCost.Content = $"{apartmentCost:N0} ";
 
                 // Доп услуги
                 decimal servicesTotal = 0;
@@ -126,17 +126,17 @@ namespace BathComplex.Pages
                     discountAmount = (decimal)(subtotal * (_selectedClient.DiscountPercent / 100m));
                     finalAmount = subtotal - discountAmount;
                     lblDiscountLabel.Content = $"Скидка ({_selectedClient.DiscountPercent}%):";
-                    lblDiscount.Content = $"-{discountAmount:N0} ₸";
+                    lblDiscount.Content = $"-{discountAmount:N0} ";
                 }
                 else
                 {
                     lblDiscountLabel.Content = "Скидка:";
-                    lblDiscount.Content = "0 ₸";
+                    lblDiscount.Content = "0 ";
                 }
 
-                lblSubtotalApartment.Content = $"{apartmentCost:N0} ₸";
-                lblSubtotalServices.Content = $"{servicesTotal:N0} ₸";
-                lblFinalAmount.Content = $"{finalAmount:N0} ₸";
+                lblSubtotalApartment.Content = $"{apartmentCost:N0} ";
+                lblSubtotalServices.Content = $"{servicesTotal:N0} ";
+                lblFinalAmount.Content = $"{finalAmount:N0} ";
             }
         }
 
@@ -279,7 +279,7 @@ namespace BathComplex.Pages
                 };
 
                 // Расчет финальной суммы
-                decimal finalAmount = decimal.Parse(lblFinalAmount.Content.ToString().Replace(" ₸", "").Replace(" ", ""));
+                decimal finalAmount = decimal.Parse(lblFinalAmount.Content.ToString().Replace(" р", "").Replace(" ", ""));
                 booking.FinalAmount = finalAmount;
                 booking.PaymentMethod = ((ComboBoxItem)cmbPaymentMethod.SelectedItem).Content.ToString();
 
@@ -313,7 +313,7 @@ namespace BathComplex.Pages
                     Connection.db.SaveChanges();
                 }
 
-                MessageBox.Show($"Бронь #{booking.BookingID} создана!\nСумма: {finalAmount:N0} ₸",
+                MessageBox.Show($"Бронь #{booking.BookingID} создана!\nСумма: {finalAmount:N0} ",
                     "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Очистка
@@ -436,7 +436,7 @@ namespace BathComplex.Pages
             if (booking == null) return;
 
             var result = MessageBox.Show(
-                $"Завершить визит #{bookingId}?\nСумма к оплате: {booking.FinalAmount:N0} ₸\nСпособ: {booking.PaymentMethod}",
+                $"Завершить визит #{bookingId}?\nСумма к оплате: {booking.FinalAmount:N0} р\nСпособ: {booking.PaymentMethod}",
                 "Завершение визита", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)

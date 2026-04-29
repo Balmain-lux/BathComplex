@@ -203,11 +203,11 @@
             <!-- Фильтр по статусу -->
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
                 <Button x:Name="btnFilterAll" Content="Все" Style="{StaticResource OutlineButton}"
-                        Width="60" Click="btnFilterAll_Click"/>
+                        Width="80" Click="btnFilterAll_Click" />
                 <Button x:Name="btnFilterActive" Content="Активные" Style="{StaticResource OutlineButton}"
-                        Width="90" Margin="5,0" Click="btnFilterActive_Click"/>
+                        Width="120" Margin="5,0" Click="btnFilterActive_Click"/>
                 <Button x:Name="btnFilterFinished" Content="Заверш." Style="{StaticResource OutlineButton}"
-                        Width="90" Click="btnFilterFinished_Click"/>
+                        Width="120" Click="btnFilterFinished_Click"/>
             </StackPanel>
 
             <DataGrid x:Name="dgActiveBookings" Grid.Row="2"
@@ -263,15 +263,15 @@
                         <Button x:Name="btnStatusBusy" Content="🔴 Занято"
                                 Style="{StaticResource OutlineButton}"
                                 Foreground="#B85450" BorderBrush="#B85450"
-                                Width="100" Click="btnStatusBusy_Click"/>
+                                Width="130" Click="btnStatusBusy_Click"/>
                         <Button x:Name="btnStatusCleaning" Content="🧹 Уборка"
                                 Style="{StaticResource OutlineButton}"
                                 Foreground="#C58C40" BorderBrush="#C58C40"
-                                Width="100" Margin="5,0" Click="btnStatusCleaning_Click"/>
+                                Width="130" Margin="5,0" Click="btnStatusCleaning_Click"/>
                         <Button x:Name="btnStatusFree" Content="🟢 Свободно"
                                 Style="{StaticResource OutlineButton}"
                                 Foreground="#6B8E5A" BorderBrush="#6B8E5A"
-                                Width="100" Click="btnStatusFree_Click"/>
+                                Width="130" Click="btnStatusFree_Click"/>
                     </StackPanel>
 
                     <Button x:Name="btnFinishBooking" Content="💰 Завершить визит"

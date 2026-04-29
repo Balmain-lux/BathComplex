@@ -7,7 +7,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Добавление клиента"
-        Height="380" Width="480"
+        Height="550" Width="480"
         WindowStartupLocation="CenterScreen"
         Background="#1A1A1A"
         ResizeMode="NoResize">
@@ -52,7 +52,7 @@
             <Label Content="Дата регистрации" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
             <DatePicker x:Name="dpRegistrationDate" 
                         SelectedDate="{x:Static sys:DateTime.Today}"
-                        Foreground="#F5F0E8" Background="#3C3C3C" 
+                        Foreground="Black" Background="#3C3C3C" 
                         BorderBrush="#555555" BorderThickness="1"/>
         </StackPanel>
 

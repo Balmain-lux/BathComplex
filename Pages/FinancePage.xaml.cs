@@ -92,24 +92,24 @@ namespace BathComplex.Pages
                              && b.StartTime < endDateInclusive)
                     .Sum(b => (decimal?)b.FinalAmount) ?? 0;
 
-                lblTotalIncome.Content = $"{income:N0} ₸";
+                lblTotalIncome.Content = $"{income:N0} ";
 
                 // Расходы
                 var expenses = Connection.db.Expenses
                     .Where(e => e.ExpenseDate >= _startDate && e.ExpenseDate <= _endDate)
                     .Sum(e => (decimal?)e.Amount) ?? 0;
 
-                lblTotalExpenses.Content = $"{expenses:N0} ₸";
+                lblTotalExpenses.Content = $"{expenses:N0} ";
 
                 // Прибыль
                 decimal profit = income - expenses;
-                lblProfit.Content = $"{profit:N0} ₸";
+                lblProfit.Content = $"{profit:N0} ";
 
                 if (profit >= 0)
                 {
                     lblProfit.Foreground = new System.Windows.Media.SolidColorBrush(
                         System.Windows.Media.Color.FromRgb(0x6B, 0x8E, 0x5A));
-                    lblProfit.Content = $"+{profit:N0} ₸";
+                    lblProfit.Content = $"+{profit:N0} ";
                 }
                 else
                 {

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BathComplex.Windows"
         mc:Ignorable="d"
         Title="Добавление апартамента"
-        Height="350" Width="450"
+        Height="550" Width="450"
         WindowStartupLocation="CenterScreen"
         Background="#1A1A1A"
         ResizeMode="NoResize">

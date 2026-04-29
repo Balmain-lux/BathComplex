@@ -33,11 +33,11 @@
                 <Label Content="Выберите период" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <DatePicker x:Name="dpStartDate" Width="150"
-                                Foreground="#F5F0E8" Background="#3C3C3C" 
+                                Foreground="Black" Background="#3C3C3C" 
                                 BorderBrush="#555555" BorderThickness="1"/>
                     <Label Content="—" Foreground="#A09888" FontSize="16" VerticalAlignment="Center" Margin="15,0"/>
                     <DatePicker x:Name="dpEndDate" Width="150"
-                                Foreground="#F5F0E8" Background="#3C3C3C" 
+                                Foreground="Black" Background="#3C3C3C" 
                                 BorderBrush="#555555" BorderThickness="1"/>
                     <Button x:Name="btnApplyFilter" Content="Применить"
                             Style="{StaticResource GoldButton}" Margin="15,0,0,0"
