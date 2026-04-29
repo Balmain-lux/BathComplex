@@ -63,24 +63,24 @@ namespace BathComplex.Pages
                              && b.StartTime >= monthStart
                              && b.StartTime < todayNext)
                     .Sum(b => (decimal?)b.FinalAmount) ?? 0;  // <-- Суммируем FinalAmount, а не StartTime!
-                lblMonthIncome.Content = $"{monthIncome:N0} ₸";
+                lblMonthIncome.Content = $"{monthIncome:N0} ";
 
                 // Расходы за месяц
                 var monthExpenses = Connection.db.Expenses
                     .Where(e => e.ExpenseDate >= monthStart && e.ExpenseDate <= today)
                     .Sum(e => (decimal?)e.Amount) ?? 0;
-                lblMonthExpenses.Content = $"{monthExpenses:N0} ₸";
+                lblMonthExpenses.Content = $"{monthExpenses:N0} ";
 
                 // Прибыль
                 decimal profit = monthIncome - monthExpenses;
-                lblMonthProfit.Content = $"{profit:N0} ₸";
+                lblMonthProfit.Content = $"{profit:N0} ";
                 lblMonthProfit.Foreground = profit >= 0
                     ? new SolidColorBrush(Color.FromRgb(0x6B, 0x8E, 0x5A))
                     : new SolidColorBrush(Color.FromRgb(0xB8, 0x54, 0x50));
 
                 // Средний чек
                 decimal avgCheck = totalVisits > 0 ? monthIncome / totalVisits : 0;
-                lblAvgCheck.Content = $"{avgCheck:N0} ₸";
+                lblAvgCheck.Content = $"{avgCheck:N0} ";
             }
             catch (Exception ex)
             {
@@ -165,7 +165,7 @@ namespace BathComplex.Pages
                 if (total == 0)
                 {
                     pieCanvas.Children.Clear();
-                    icPieLegend.ItemsSource = new[] { new { Color = "#555555", Label = "Нет расходов", ValueText = "0 ₸" } };
+                    icPieLegend.ItemsSource = new[] { new { Color = "#555555", Label = "Нет расходов", ValueText = "0 " } };
                     return;
                 }
 
@@ -229,7 +229,7 @@ namespace BathComplex.Pages
                     {
                         Color = colorHex,
                         Label = expenses[i].Category,
-                        ValueText = $"{expenses[i].Total:N0} ₸"
+                        ValueText = $"{expenses[i].Total:N0} "
                     });
 
                     startAngle += sweepAngle;
