@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BathComplex.Windows"
         mc:Ignorable="d"
-        Title="Добавление апартамента"
+        
         Height="550" Width="450"
         WindowStartupLocation="CenterScreen"
         Background="#1A1A1A"
@@ -22,8 +22,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
-        <Label x:Name="lblTitle" Content="Добавить новый апартамент"
+        <!-- Заголовок (меняется в коде) -->
+        <Label x:Name="lblTitle" Content="Апартамент"
                Style="{StaticResource SubTitleLabel}" Margin="0,0,0,20"/>
 
         <!-- Поля ввода -->
@@ -42,12 +42,12 @@
             </ComboBox>
 
             <!-- Цена будни -->
-            <Label Content="Цена в будни (р/час)" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
+            <Label Content="Цена в будни (₸/час)" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
             <TextBox x:Name="txtWeekdayPrice" Style="{StaticResource DarkTextBox}"
                      Text="4500"/>
 
             <!-- Цена выходные -->
-            <Label Content="Цена в выходные (р/час)" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
+            <Label Content="Цена в выходные (₸/час)" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
             <TextBox x:Name="txtWeekendPrice" Style="{StaticResource DarkTextBox}"
                      Text="5500"/>
         </StackPanel>

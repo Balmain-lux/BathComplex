@@ -19,15 +19,59 @@ namespace BathComplex.Windows
     /// </summary>
     public partial class ApartmentDialog : Window
     {
+        // Режим работы: true = редактирование, false = добавление
+        private bool _isEditMode;
+        private int? _apartmentId;
+
+        // Свойства для возврата данных
         public string ApartmentName { get; private set; }
         public string ApartmentType { get; private set; }
         public decimal WeekdayPrice { get; private set; }
         public decimal WeekendPrice { get; private set; }
         public bool IsSaved { get; private set; }
+
         public ApartmentDialog()
         {
             InitializeComponent();
+            _isEditMode = false;
         }
+
+        public void SetAddMode()
+        {
+            _isEditMode = false;
+            _apartmentId = null;
+            lblTitle.Content = "➕ Добавить новый апартамент";
+
+            // Очищаем поля
+            txtName.Text = "Апартамент №";
+            cmbType.SelectedIndex = 0;
+            txtWeekdayPrice.Text = "4500";
+            txtWeekendPrice.Text = "5500";
+        }
+
+        public void SetEditMode(int apartmentId, string name, string type, decimal weekdayPrice, decimal weekendPrice)
+        {
+            _isEditMode = true;
+            _apartmentId = apartmentId;
+            lblTitle.Content = "✏️ Редактирование апартамента";
+
+            // Заполняем поля
+            txtName.Text = name;
+
+            // Выбираем тип в ComboBox
+            foreach (ComboBoxItem item in cmbType.Items)
+            {
+                if (item.Content.ToString() == type)
+                {
+                    cmbType.SelectedItem = item;
+                    break;
+                }
+            }
+
+            txtWeekdayPrice.Text = weekdayPrice.ToString();
+            txtWeekendPrice.Text = weekendPrice.ToString();
+        }
+
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -48,7 +92,7 @@ namespace BathComplex.Windows
             }
 
             // Тип
-            ApartmentType = ((System.Windows.Controls.ComboBoxItem)cmbType.SelectedItem).Content.ToString();
+            ApartmentType = ((ComboBoxItem)cmbType.SelectedItem).Content.ToString();
 
             // Валидация цены будни
             if (!decimal.TryParse(txtWeekdayPrice.Text, out decimal wdPrice) || wdPrice <= 0)

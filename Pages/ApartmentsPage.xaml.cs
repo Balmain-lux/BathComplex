@@ -83,6 +83,7 @@ namespace BathComplex.Pages
         {
             var dialog = new ApartmentDialog();
             dialog.Owner = Application.Current.MainWindow;
+            dialog.SetAddMode();  // <-- Устанавливаем режим добавления
             dialog.ShowDialog();
 
             if (dialog.IsSaved)
@@ -136,8 +137,63 @@ namespace BathComplex.Pages
             if (sender is Button btn && btn.Tag != null)
             {
                 int aptId = Convert.ToInt32(btn.Tag);
-                MessageBox.Show($"Редактирование апартамента ID: {aptId} (будет реализовано)",
-                    "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Загружаем данные апартамента
+                var apartment = Connection.db.Apartments.Find(aptId);
+                if (apartment == null)
+                {
+                    MessageBox.Show("Апартамент не найден.", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var pricingWeekday = Connection.db.ApartmentPricing
+                    .FirstOrDefault(p => p.ApartmentID == aptId && p.DayType == "Weekday");
+                var pricingWeekend = Connection.db.ApartmentPricing
+                    .FirstOrDefault(p => p.ApartmentID == aptId && p.DayType == "Weekend");
+
+                if (pricingWeekday == null || pricingWeekend == null)
+                {
+                    MessageBox.Show("Цены для апартамента не найдены.", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Открываем диалог в режиме редактирования
+                var dialog = new ApartmentDialog();
+                dialog.Owner = Application.Current.MainWindow;
+                dialog.SetEditMode(
+                    aptId,
+                    apartment.Name,
+                    apartment.Type,
+                    pricingWeekday.PricePerHour,
+                    pricingWeekend.PricePerHour
+                );
+                dialog.ShowDialog();
+
+                if (dialog.IsSaved)
+                {
+                    try
+                    {
+                        // Обновляем данные
+                        apartment.Name = dialog.ApartmentName;
+                        apartment.Type = dialog.ApartmentType;
+
+                        pricingWeekday.PricePerHour = dialog.WeekdayPrice;
+                        pricingWeekend.PricePerHour = dialog.WeekendPrice;
+
+                        Connection.db.SaveChanges();
+                        LoadApartments();
+
+                        MessageBox.Show("Апартамент успешно обновлен!", "Успех",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка при редактировании: {ex.Message}", "Ошибка",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
         }
 
