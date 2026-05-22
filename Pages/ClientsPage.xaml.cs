@@ -112,6 +112,7 @@ namespace BathComplex.Pages
         {
             var dialog = new ClientDialog();
             dialog.Owner = Application.Current.MainWindow;
+            dialog.SetAddMode();
             dialog.ShowDialog();
 
             if (dialog.IsSaved)
@@ -167,9 +168,12 @@ namespace BathComplex.Pages
 
                 var dialog = new ClientDialog();
                 dialog.Owner = Application.Current.MainWindow;
-                dialog.Title = "Редактирование клиента";
-                dialog.LoadClientData(client.FullName, client.Phone,
-                    (decimal)client.DiscountPercent, client.RegistrationDate ?? DateTime.Today);
+                dialog.SetEditMode(           // <-- Режим редактирования
+                    client.FullName,
+                    client.Phone,
+                    (decimal)client.DiscountPercent,
+                    client.RegistrationDate ?? DateTime.Today
+                );
                 dialog.ShowDialog();
 
                 if (dialog.IsSaved)

@@ -37,6 +37,27 @@ namespace BathComplex.Windows
             dpRegistrationDate.SelectedDate = regDate;
         }
 
+        public void SetAddMode()
+        {
+            lblTitle.Content = "➕ Добавить нового клиента";
+
+            // Очищаем поля
+            txtFullName.Text = "";
+            txtPhone.Text = "+7";
+            txtDiscount.Text = "0";
+            dpRegistrationDate.SelectedDate = DateTime.Today;
+        }
+
+        public void SetEditMode(string fullName, string phone, decimal discount, DateTime regDate)
+        {
+            lblTitle.Content = "✏️ Редактирование клиента";
+
+            txtFullName.Text = fullName;
+            txtPhone.Text = phone;
+            txtDiscount.Text = discount.ToString();
+            dpRegistrationDate.SelectedDate = regDate;
+        }
+
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {

@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:BathComplex.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Добавление клиента"
         Height="550" Width="480"
         WindowStartupLocation="CenterScreen"
         Background="#1A1A1A"
