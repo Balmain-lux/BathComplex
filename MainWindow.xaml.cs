@@ -67,7 +67,7 @@ namespace BathComplex
         private void ResetButtonStyle(Button btn)
         {
             btn.Foreground = new System.Windows.Media.SolidColorBrush(
-                System.Windows.Media.Color.FromRgb(0xF5, 0xF0, 0xE8));
+                System.Windows.Media.Color.FromRgb(0x2D, 0x2A, 0x26));
             btn.Background = System.Windows.Media.Brushes.Transparent;
             btn.FontWeight = FontWeights.Normal;
         }
@@ -75,7 +75,7 @@ namespace BathComplex
         private void SetActiveButton(Button btn)
         {
             btn.Foreground = new System.Windows.Media.SolidColorBrush(
-                System.Windows.Media.Color.FromRgb(0xC5, 0xA4, 0x6B));
+                System.Windows.Media.Color.FromRgb(0xB8, 0x94, 0x3A));
             btn.FontWeight = FontWeights.Bold;
         }
 

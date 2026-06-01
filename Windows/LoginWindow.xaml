@@ -8,7 +8,7 @@
        Title="Вход в систему - Банные Апартаменты"
         Height="600" Width="450"
         WindowStartupLocation="CenterScreen"
-        Background="#1A1A1A"
+        Background="#F5F3EE"
         ResizeMode="NoResize"
         WindowStyle="None"
         AllowsTransparency="True">
@@ -18,7 +18,7 @@
     </Window.Resources>
 
 
-    <Border Background="#1A1A1A" CornerRadius="10" BorderBrush="#3C3C3C" BorderThickness="1" >
+    <Border Background="#F5F3EE" CornerRadius="10" BorderBrush="#EDE8E0" BorderThickness="1" >
         <Grid Margin="40">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -32,32 +32,32 @@
             <!-- Кнопка закрытия -->
             <Button x:Name="btnClose" Content="✕" Style="{StaticResource OutlineButton}"
                     HorizontalAlignment="Right" Width="35" Height="35" Padding="0"
-                    Foreground="#A09888" BorderThickness="0" FontSize="16"
+                    Foreground="#7A756D" BorderThickness="0" FontSize="16"
                     Click="btnClose_Click"/>
 
             <!-- Логотип -->
             <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,25">
-                <Label Content="БАННЫЕ" Foreground="#C5A46B" FontSize="24" FontWeight="Bold"
+                <Label Content="БАННЫЕ" Foreground="#B8943A" FontSize="24" FontWeight="Bold"
                        HorizontalAlignment="Center" FontFamily="{StaticResource MainFont}"/>
-                <Label Content="АПАРТАМЕНТЫ" Foreground="#F5F0E8" FontSize="16"
+                <Label Content="АПАРТАМЕНТЫ" Foreground="#2D2A26" FontSize="16"
                        HorizontalAlignment="Center" FontFamily="{StaticResource MainFont}"/>
-                <Label Content="Система управления" Foreground="#A09888" FontSize="12"
+                <Label Content="Система управления" Foreground="#7A756D" FontSize="12"
                        HorizontalAlignment="Center" Margin="0,5,0,0"/>
             </StackPanel>
 
             <!-- Форма входа -->
             <StackPanel Grid.Row="2">
-                <Label Content="Логин" Foreground="#A09888" FontSize="13" Margin="0,0,0,5"/>
+                <Label Content="Логин" Foreground="#7A756D" FontSize="13" Margin="0,0,0,5"/>
                 <TextBox x:Name="txtLogin" Style="{StaticResource DarkTextBox}"
                          Height="60" FontSize="15"
                          KeyDown="TextBox_KeyDown"/>
 
-                <Label Content="Пароль" Foreground="#A09888" FontSize="13" Margin="0,15,0,5"/>
+                <Label Content="Пароль" Foreground="#7A756D" FontSize="13" Margin="0,15,0,5"/>
                 <PasswordBox x:Name="txtPassword" 
-                             Background="#3C3C3C" Foreground="#F5F0E8"
-                             BorderBrush="#555555" BorderThickness="1"
+                             Background="#EDE8E0" Foreground="#2D2A26"
+                             BorderBrush="#7A756D" BorderThickness="1"
                              FontSize="15" Height="60" Padding="10,8"
-                             CaretBrush="#C5A46B"
+                             CaretBrush="#B8943A"
                              KeyDown="TextBox_KeyDown"/>
 
                 <Label x:Name="lblError" Foreground="#B85450" FontSize="12"

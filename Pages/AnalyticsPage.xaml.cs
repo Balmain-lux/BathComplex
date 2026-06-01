@@ -23,7 +23,7 @@ namespace BathComplex.Pages
     {
         private static readonly string[] PieColors = new[]
         {
-            "#C5A46B", "#B85450", "#6B8E5A", "#C58C40",
+            "#B8943A", "#B85450", "#5A7D4A", "#C58C40",
             "#7B6B8A", "#4A7B8A", "#8A6B4A", "#5A7B6B"
         };
         public AnalyticsPage()
@@ -75,7 +75,7 @@ namespace BathComplex.Pages
                 decimal profit = monthIncome - monthExpenses;
                 lblMonthProfit.Content = $"{profit:N0} ";
                 lblMonthProfit.Foreground = profit >= 0
-                    ? new SolidColorBrush(Color.FromRgb(0x6B, 0x8E, 0x5A))
+                    ? new SolidColorBrush(Color.FromRgb(0x5A, 0x7D, 0x4A))
                     : new SolidColorBrush(Color.FromRgb(0xB8, 0x54, 0x50));
 
                 // Средний чек
@@ -165,7 +165,7 @@ namespace BathComplex.Pages
                 if (total == 0)
                 {
                     pieCanvas.Children.Clear();
-                    icPieLegend.ItemsSource = new[] { new { Color = "#555555", Label = "Нет расходов", ValueText = "0 " } };
+                    icPieLegend.ItemsSource = new[] { new { Color = "#7A756D", Label = "Нет расходов", ValueText = "0 " } };
                     return;
                 }
 
@@ -183,7 +183,7 @@ namespace BathComplex.Pages
                     var path = new Path
                     {
                         Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(colorHex),
-                        Stroke = new SolidColorBrush(Color.FromRgb(0x1A, 0x1A, 0x1A)),
+                        Stroke = new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF)),
                         StrokeThickness = 1.5
                     };
 
@@ -216,7 +216,7 @@ namespace BathComplex.Pages
                         var textBlock = new TextBlock
                         {
                             Text = $"{expenses[i].Total / total * 100:F0}%",
-                            Foreground = new SolidColorBrush(Color.FromRgb(0x1A, 0x1A, 0x1A)),
+                            Foreground = new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF)),
                             FontSize = 11,
                             FontWeight = FontWeights.SemiBold
                         };

@@ -154,7 +154,7 @@ namespace BathComplex.Pages
             // Исправляем цвета на нормальные кисти
             lblDayType.Foreground = isWeekend
                 ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0xC0, 0x60, 0x40))
-                : new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0x6B, 0x8E, 0x5A));
+                : new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0x5A, 0x7D, 0x4A));
         }
 
         private void cmbApartment_SelectionChanged(object sender, SelectionChangedEventArgs e)

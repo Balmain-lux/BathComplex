@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BathComplex.Pages"
       mc:Ignorable="d" 
       Title="Финансы"
-      Background="#1A1A1A">
+      Background="#F5F3EE">
 
     <Page.Resources>
         <ResourceDictionary Source="../Resources/Styles.xaml"/>
@@ -24,21 +24,21 @@
         <!-- Заголовок -->
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
             <Label Content="Финансы" Style="{StaticResource TitleLabel}"/>
-            <Label Content="Доходы и расходы банного комплекса" Foreground="#A09888" FontSize="14"/>
+            <Label Content="Доходы и расходы банного комплекса" Foreground="#7A756D" FontSize="14"/>
         </StackPanel>
 
         <!-- Период -->
         <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,0,0,15">
             <StackPanel>
-                <Label Content="Выберите период" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                <Label Content="Выберите период" Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <DatePicker x:Name="dpStartDate" Width="150"
-                                Foreground="Black" Background="#3C3C3C" 
-                                BorderBrush="#555555" BorderThickness="1"/>
-                    <Label Content="—" Foreground="#A09888" FontSize="16" VerticalAlignment="Center" Margin="15,0"/>
+                                Foreground="Black" Background="#EDE8E0" 
+                                BorderBrush="#7A756D" BorderThickness="1"/>
+                    <Label Content="—" Foreground="#7A756D" FontSize="16" VerticalAlignment="Center" Margin="15,0"/>
                     <DatePicker x:Name="dpEndDate" Width="150"
-                                Foreground="Black" Background="#3C3C3C" 
-                                BorderBrush="#555555" BorderThickness="1"/>
+                                Foreground="Black" Background="#EDE8E0" 
+                                BorderBrush="#7A756D" BorderThickness="1"/>
                     <Button x:Name="btnApplyFilter" Content="Применить"
                             Style="{StaticResource GoldButton}" Margin="15,0,0,0"
                             Click="btnApplyFilter_Click"/>
@@ -65,10 +65,10 @@
             <!-- Доходы -->
             <Border Grid.Column="0" Style="{StaticResource CardBorder}">
                 <StackPanel>
-                    <Label Content="ДОХОДЫ" Foreground="#6B8E5A" FontSize="13" FontWeight="SemiBold"/>
+                    <Label Content="ДОХОДЫ" Foreground="#5A7D4A" FontSize="13" FontWeight="SemiBold"/>
                     <Label x:Name="lblTotalIncome" Content="0 " 
-                           Foreground="#F5F0E8" FontSize="28" FontWeight="Bold"/>
-                    <Label Content="за выбранный период" Foreground="#A09888" FontSize="12"/>
+                           Foreground="#2D2A26" FontSize="28" FontWeight="Bold"/>
+                    <Label Content="за выбранный период" Foreground="#7A756D" FontSize="12"/>
                 </StackPanel>
             </Border>
 
@@ -77,18 +77,18 @@
                 <StackPanel>
                     <Label Content="РАСХОДЫ" Foreground="#B85450" FontSize="13" FontWeight="SemiBold"/>
                     <Label x:Name="lblTotalExpenses" Content="0 " 
-                           Foreground="#F5F0E8" FontSize="28" FontWeight="Bold"/>
-                    <Label Content="за выбранный период" Foreground="#A09888" FontSize="12"/>
+                           Foreground="#2D2A26" FontSize="28" FontWeight="Bold"/>
+                    <Label Content="за выбранный период" Foreground="#7A756D" FontSize="12"/>
                 </StackPanel>
             </Border>
 
             <!-- Прибыль -->
             <Border Grid.Column="4" Style="{StaticResource CardBorder}">
                 <StackPanel>
-                    <Label Content="ПРИБЫЛЬ" Foreground="#C5A46B" FontSize="13" FontWeight="SemiBold"/>
+                    <Label Content="ПРИБЫЛЬ" Foreground="#B8943A" FontSize="13" FontWeight="SemiBold"/>
                     <Label x:Name="lblProfit" Content="0 " 
-                           Foreground="#F5F0E8" FontSize="28" FontWeight="Bold"/>
-                    <Label Content="за выбранный период" Foreground="#A09888" FontSize="12"/>
+                           Foreground="#2D2A26" FontSize="28" FontWeight="Bold"/>
+                    <Label Content="за выбранный период" Foreground="#7A756D" FontSize="12"/>
                 </StackPanel>
             </Border>
         </Grid>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BathComplex.Pages"
       mc:Ignorable="d" 
       Title="Аналитика"
-      Background="#1A1A1A">
+      Background="#F5F3EE">
 
     <Page.Resources>
         <ResourceDictionary Source="../Resources/Styles.xaml"/>
@@ -27,14 +27,14 @@
             <!-- Заголовок -->
             <StackPanel Grid.Row="0" Margin="0,0,0,20">
                 <Label Content="Аналитика и отчеты" Style="{StaticResource TitleLabel}"/>
-                <Label Content="Сводная статистика по бизнесу" Foreground="#A09888" FontSize="14"/>
+                <Label Content="Сводная статистика по бизнесу" Foreground="#7A756D" FontSize="14"/>
             </StackPanel>
 
             <!-- Блок 1: Ключевые показатели -->
             <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                 <StackPanel>
                     <Label Content="📊 Ключевые показатели за месяц" 
-                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                           Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
 
                     <Grid Margin="0,10">
                         <Grid.ColumnDefinitions>
@@ -45,42 +45,42 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Background="#2A2A2A" CornerRadius="4" Padding="12" Margin="0,0,5,0">
+                        <Border Background="#F5F3EE" CornerRadius="4" Padding="12" Margin="0,0,5,0">
                             <StackPanel>
-                                <Label Content="Всего визитов" Foreground="#A09888" FontSize="11"/>
-                                <Label x:Name="lblTotalVisits" Content="0" Foreground="#F5F0E8" 
+                                <Label Content="Всего визитов" Foreground="#7A756D" FontSize="11"/>
+                                <Label x:Name="lblTotalVisits" Content="0" Foreground="#2D2A26" 
                                        FontSize="24" FontWeight="Bold"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="1" Background="#2A2A2A" CornerRadius="4" Padding="12" Margin="0,0,5,0">
+                        <Border Grid.Column="1" Background="#F5F3EE" CornerRadius="4" Padding="12" Margin="0,0,5,0">
                             <StackPanel>
-                                <Label Content="Средний чек" Foreground="#A09888" FontSize="11"/>
-                                <Label x:Name="lblAvgCheck" Content="0 " Foreground="#F5F0E8" 
+                                <Label Content="Средний чек" Foreground="#7A756D" FontSize="11"/>
+                                <Label x:Name="lblAvgCheck" Content="0 " Foreground="#2D2A26" 
                                        FontSize="24" FontWeight="Bold"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="2" Background="#2A2A2A" CornerRadius="4" Padding="12" Margin="0,0,5,0">
+                        <Border Grid.Column="2" Background="#F5F3EE" CornerRadius="4" Padding="12" Margin="0,0,5,0">
                             <StackPanel>
-                                <Label Content="Доход за месяц" Foreground="#A09888" FontSize="11"/>
-                                <Label x:Name="lblMonthIncome" Content="0 " Foreground="#6B8E5A" 
+                                <Label Content="Доход за месяц" Foreground="#7A756D" FontSize="11"/>
+                                <Label x:Name="lblMonthIncome" Content="0 " Foreground="#5A7D4A" 
                                        FontSize="24" FontWeight="Bold"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="3" Background="#2A2A2A" CornerRadius="4" Padding="12" Margin="0,0,5,0">
+                        <Border Grid.Column="3" Background="#F5F3EE" CornerRadius="4" Padding="12" Margin="0,0,5,0">
                             <StackPanel>
-                                <Label Content="Расходы за месяц" Foreground="#A09888" FontSize="11"/>
+                                <Label Content="Расходы за месяц" Foreground="#7A756D" FontSize="11"/>
                                 <Label x:Name="lblMonthExpenses" Content="0 " Foreground="#B85450" 
                                        FontSize="24" FontWeight="Bold"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="4" Background="#2A2A2A" CornerRadius="4" Padding="12">
+                        <Border Grid.Column="4" Background="#F5F3EE" CornerRadius="4" Padding="12">
                             <StackPanel>
-                                <Label Content="Прибыль" Foreground="#A09888" FontSize="11"/>
-                                <Label x:Name="lblMonthProfit" Content="0 " Foreground="#C5A46B" 
+                                <Label Content="Прибыль" Foreground="#7A756D" FontSize="11"/>
+                                <Label x:Name="lblMonthProfit" Content="0 " Foreground="#B8943A" 
                                        FontSize="24" FontWeight="Bold"/>
                             </StackPanel>
                         </Border>
@@ -92,7 +92,7 @@
             <Border Grid.Row="2" Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                 <StackPanel>
                     <Label Content="📈 Доходы по дням (текущий месяц)" 
-                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"
+                           Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"
                            Margin="0,0,0,10"/>
 
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
@@ -107,18 +107,18 @@
                                     <StackPanel Width="50" Margin="5,0" HorizontalAlignment="Center">
                                         <!-- Сумма над столбцом -->
                                         <TextBlock Text="{Binding ValueText}" 
-                                                   Foreground="#F5F0E8" FontSize="10"
+                                                   Foreground="#2D2A26" FontSize="10"
                                                    HorizontalAlignment="Center" Margin="0,0,0,3"/>
                                         <!-- Столбец -->
-                                        <Border Background="#3C3C3C" CornerRadius="3,3,0,0"
+                                        <Border Background="#EDE8E0" CornerRadius="3,3,0,0"
                                                 Width="30" Height="150" HorizontalAlignment="Center">
-                                            <Border Background="#C5A46B" CornerRadius="3,3,0,0"
+                                            <Border Background="#B8943A" CornerRadius="3,3,0,0"
                                                     Height="{Binding BarHeight}"
                                                     VerticalAlignment="Bottom"/>
                                         </Border>
                                         <!-- Подпись дня -->
                                         <TextBlock Text="{Binding Key}" 
-                                                   Foreground="#A09888" FontSize="10"
+                                                   Foreground="#7A756D" FontSize="10"
                                                    HorizontalAlignment="Center" Margin="0,5,0,0"/>
                                     </StackPanel>
                                 </DataTemplate>
@@ -128,8 +128,8 @@
 
                     <!-- Легенда -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                        <Border Background="#C5A46B" Width="20" Height="12" CornerRadius="2"/>
-                        <Label Content="Доход " Foreground="#A09888" FontSize="11" Margin="5,0,0,0"/>
+                        <Border Background="#B8943A" Width="20" Height="12" CornerRadius="2"/>
+                        <Label Content="Доход " Foreground="#7A756D" FontSize="11" Margin="5,0,0,0"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -138,7 +138,7 @@
             <Border Grid.Row="3" Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                 <StackPanel>
                     <Label Content="📉 Расходы по категориям (текущий месяц)" 
-                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"
+                           Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"
                            Margin="0,0,0,10"/>
 
                     <Grid>
@@ -157,11 +157,11 @@
                                     <StackPanel Orientation="Horizontal" Margin="0,3">
                                         <Border Width="14" Height="14" CornerRadius="2" 
                                                 Background="{Binding Color}" Margin="0,0,8,0"/>
-                                        <TextBlock Text="{Binding Label}" Foreground="#F5F0E8" FontSize="12"
+                                        <TextBlock Text="{Binding Label}" Foreground="#2D2A26" FontSize="12"
                                                    VerticalAlignment="Center"/>
-                                        <TextBlock Text=" — " Foreground="#A09888" FontSize="12"
+                                        <TextBlock Text=" — " Foreground="#7A756D" FontSize="12"
                                                    VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding ValueText}" Foreground="#C5A46B" FontSize="12"
+                                        <TextBlock Text="{Binding ValueText}" Foreground="#B8943A" FontSize="12"
                                                    FontWeight="SemiBold" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
@@ -175,7 +175,7 @@
             <Border Grid.Row="4" Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                 <StackPanel>
                     <Label Content="📋 Сводный отчет по финансам" 
-                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                           Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
 
                     <DataGrid x:Name="dgFinanceSummary"
                               Style="{StaticResource DarkDataGrid}"
@@ -204,15 +204,15 @@
                                                 <Style TargetType="Border">
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding IsPositive}" Value="True">
-                                                            <Setter Property="Background" Value="#4A5E3A"/>
+                                                            <Setter Property="Background" Value="#5A7D4A"/>
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding IsPositive}" Value="False">
-                                                            <Setter Property="Background" Value="#8B3A3A"/>
+                                                            <Setter Property="Background" Value="#B85450"/>
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-                                            <TextBlock Text="{Binding ResultText}" Foreground="#F5F0E8" FontSize="12"/>
+                                            <TextBlock Text="{Binding ResultText}" Foreground="#2D2A26" FontSize="12"/>
                                         </Border>
                                     </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -226,7 +226,7 @@
             <Border Grid.Row="5" Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                 <StackPanel>
                     <Label Content="🏆 ТОП клиентов по сумме оплат" 
-                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"
+                           Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"
                            Margin="0,0,0,10"/>
 
                     <DataGrid x:Name="dgTopClients"
@@ -255,7 +255,7 @@
             <Border Grid.Row="6" Style="{StaticResource CardBorder}">
                 <StackPanel>
                     <Label Content="🏠 Популярность апартаментов" 
-                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"
+                           Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"
                            Margin="0,0,0,10"/>
 
                     <ItemsControl x:Name="icApartmentBars" Margin="0,10">
@@ -267,18 +267,18 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="80"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Content="{Binding Name}" Foreground="#F5F0E8" FontSize="13" 
+                                    <Label Content="{Binding Name}" Foreground="#2D2A26" FontSize="13" 
                                            VerticalAlignment="Center"/>
                                     <ProgressBar Grid.Column="1" 
                                                  Value="{Binding OccupancyRate, Mode=OneWay}" 
                                                  Minimum="0" Maximum="100"
                                                  Height="24" 
-                                                 Foreground="#C5A46B" 
-                                                 Background="#3C3C3C"
+                                                 Foreground="#B8943A" 
+                                                 Background="#EDE8E0"
                                                  BorderThickness="0"/>
                                     <Label Grid.Column="2" 
                                            Content="{Binding OccupancyRate, StringFormat={}{0:F1}%}" 
-                                           Foreground="#C5A46B" FontSize="12" FontWeight="SemiBold"
+                                           Foreground="#B8943A" FontSize="12" FontWeight="SemiBold"
                                            VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </Grid>
                             </DataTemplate>

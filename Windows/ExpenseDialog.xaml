@@ -9,7 +9,7 @@
        Title="Добавить расход"
         Height="550" Width="480"
         WindowStartupLocation="CenterScreen"
-        Background="#1A1A1A"
+        Background="#F5F3EE"
         ResizeMode="NoResize">
 
     <Window.Resources>
@@ -28,24 +28,24 @@
 
         <StackPanel Grid.Row="1">
             <!-- Описание -->
-            <Label Content="Описание расхода" Foreground="#A09888" FontSize="13" Margin="0,5,0,0"/>
+            <Label Content="Описание расхода" Foreground="#7A756D" FontSize="13" Margin="0,5,0,0"/>
             <TextBox x:Name="txtDescription" Style="{StaticResource DarkTextBox}"
                      Text="" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
 
             <!-- Сумма -->
-            <Label Content="Сумма (р)" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
+            <Label Content="Сумма (р)" Foreground="#7A756D" FontSize="13" Margin="0,10,0,0"/>
             <TextBox x:Name="txtAmount" Style="{StaticResource DarkTextBox}" Text="0"/>
 
             <!-- Категория -->
-            <Label Content="Категория расхода" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
+            <Label Content="Категория расхода" Foreground="#7A756D" FontSize="13" Margin="0,10,0,0"/>
             <ComboBox x:Name="cmbCategory" Style="{StaticResource DarkComboBox}"/>
 
             <!-- Дата -->
-            <Label Content="Дата расхода" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
+            <Label Content="Дата расхода" Foreground="#7A756D" FontSize="13" Margin="0,10,0,0"/>
             <DatePicker x:Name="dpExpenseDate" 
                         SelectedDate="{x:Static sys:DateTime.Today}"
-                        Foreground="Black" Background="#3C3C3C" 
-                        BorderBrush="#555555" BorderThickness="1"/>
+                        Foreground="Black" Background="#EDE8E0" 
+                        BorderBrush="#7A756D" BorderThickness="1"/>
         </StackPanel>
 
         <!-- Кнопки -->

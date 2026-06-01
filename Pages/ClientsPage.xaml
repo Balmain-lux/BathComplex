@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BathComplex.Pages"
       mc:Ignorable="d" 
       Title="Клиенты"
-      Background="#1A1A1A">
+      Background="#F5F3EE">
 
     <Page.Resources>
         <ResourceDictionary Source="../Resources/Styles.xaml"/>
@@ -24,7 +24,7 @@
         <!-- Заголовок -->
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
             <Label Content="Клиенты" Style="{StaticResource TitleLabel}"/>
-            <Label Content="Управление клиентской базой" Foreground="#A09888" FontSize="14"/>
+            <Label Content="Управление клиентской базой" Foreground="#7A756D" FontSize="14"/>
         </StackPanel>
 
         <!-- Поиск и действия -->
@@ -58,7 +58,7 @@
         </Grid>
 
         <!-- Информация о количестве -->
-        <Label x:Name="lblCount" Grid.Row="2" Foreground="#A09888" FontSize="13" Margin="0,0,0,10"/>
+        <Label x:Name="lblCount" Grid.Row="2" Foreground="#7A756D" FontSize="13" Margin="0,0,0,10"/>
 
         <!-- Таблица клиентов -->
         <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
@@ -105,7 +105,7 @@
         </ScrollViewer>
 
         <!-- Панель истории визитов (скрыта по умолчанию) -->
-        <Border x:Name="historyPanel" Grid.Row="4" Background="#2D2D2D"
+        <Border x:Name="historyPanel" Grid.Row="4" Background="#FFFFFF"
                 CornerRadius="6" Padding="20" Margin="0,20,0,0" Visibility="Collapsed">
             <Grid>
                 <Grid.RowDefinitions>
@@ -116,7 +116,7 @@
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
                     <Label x:Name="lblHistoryTitle" Content="История визитов клиента"
-                           Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                           Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
                     <Button x:Name="btnCloseHistory" Content="✕ Закрыть"
                             Style="{StaticResource OutlineButton}" 
                             HorizontalAlignment="Right" Margin="20,0,0,0"

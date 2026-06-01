@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BathComplex.Pages"
       mc:Ignorable="d" 
       Title="Апартаменты"
-      Background="#1A1A1A">
+      Background="#F5F3EE">
 
     <Page.Resources>
         <ResourceDictionary Source="../Resources/Styles.xaml"/>
@@ -22,7 +22,7 @@
         <!-- Заголовок -->
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
             <Label Content="Управление апартаментами" Style="{StaticResource TitleLabel}"/>
-            <Label Content="Текущий статус всех апартаментов" Foreground="#A09888" FontSize="14"/>
+            <Label Content="Текущий статус всех апартаментов" Foreground="#7A756D" FontSize="14"/>
         </StackPanel>
 
         <!-- Панель действий -->
@@ -53,21 +53,21 @@
                                         <Style TargetType="Border">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding CurrentStatus}" Value="Свободно">
-                                                    <Setter Property="Background" Value="#4A5E3A"/>
+                                                    <Setter Property="Background" Value="#5A7D4A"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding CurrentStatus}" Value="Занято">
-                                                    <Setter Property="Background" Value="#8B3A3A"/>
+                                                    <Setter Property="Background" Value="#B85450"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding CurrentStatus}" Value="Бронь">
-                                                    <Setter Property="Background" Value="#8B6B3A"/>
+                                                    <Setter Property="Background" Value="#C58C40"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding CurrentStatus}" Value="Уборка">
-                                                    <Setter Property="Background" Value="#6B4A3A"/>
+                                                    <Setter Property="Background" Value="#8B6B4A"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Border.Style>
-                                    <TextBlock Text="{Binding CurrentStatus}" Foreground="#F5F0E8"
+                                    <TextBlock Text="{Binding CurrentStatus}" Foreground="#2D2A26"
                                                FontSize="12" FontWeight="SemiBold"/>
                                 </Border>
                             </DataTemplate>
@@ -95,7 +95,7 @@
         </ScrollViewer>
 
         <!-- Панель визуальной сетки доступности на 2-3 дня -->
-        <Border x:Name="availabilityPanel" Grid.Row="2" Background="#2D2D2D"
+        <Border x:Name="availabilityPanel" Grid.Row="2" Background="#FFFFFF"
                 CornerRadius="6" Padding="20" Margin="0,20,0,0" Visibility="Collapsed">
             <StackPanel>
                 <Label Content="Сетка доступности (ближайшие 3 дня)" Style="{StaticResource SubTitleLabel}"/>

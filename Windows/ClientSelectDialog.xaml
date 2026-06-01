@@ -8,7 +8,7 @@
         Title="Выбор клиента"
         Height="500" Width="650"
         WindowStartupLocation="CenterScreen"
-        Background="#1A1A1A"
+        Background="#F5F3EE"
         ResizeMode="NoResize">
 
     <Window.Resources>

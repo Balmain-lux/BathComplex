@@ -7,7 +7,7 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
      Title="Бронирование"
-      Background="#1A1A1A">
+      Background="#F5F3EE">
 
     <Page.Resources>
         <ResourceDictionary Source="../Resources/Styles.xaml"/>
@@ -28,7 +28,7 @@
                 <!-- Карточка: Клиент -->
                 <Border Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                     <StackPanel>
-                        <Label Content="1. Клиент" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                        <Label Content="1. Клиент" Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBox x:Name="txtClientName" Style="{StaticResource DarkTextBox}"
                                      Width="280" IsReadOnly="True" Text="Выберите клиента..."/>
@@ -36,26 +36,26 @@
                                     Style="{StaticResource GoldButton}" Margin="10,0,0,0"
                                     Click="btnSelectClient_Click"/>
                         </StackPanel>
-                        <Label x:Name="lblClientInfo" Foreground="#6B6B6B" FontSize="12" Margin="0,5,0,0"/>
+                        <Label x:Name="lblClientInfo" Foreground="#7A756D" FontSize="12" Margin="0,5,0,0"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Карточка: Апартамент и время -->
                 <Border Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                     <StackPanel>
-                        <Label Content="2. Апартамент и время" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                        <Label Content="2. Апартамент и время" Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
 
-                        <Label Content="Апартамент" Foreground="#A09888" FontSize="13" Margin="0,5,0,0"/>
+                        <Label Content="Апартамент" Foreground="#7A756D" FontSize="13" Margin="0,5,0,0"/>
                         <ComboBox x:Name="cmbApartment" Style="{StaticResource DarkComboBox}"
                                   SelectionChanged="cmbApartment_SelectionChanged"/>
 
-                        <Label Content="Дата визита" Foreground="#A09888" FontSize="13" Margin="0,10,0,0"/>
+                        <Label Content="Дата визита" Foreground="#7A756D" FontSize="13" Margin="0,10,0,0"/>
                         <DatePicker x:Name="dpVisitDate" 
                                     SelectedDate="{x:Static sys:DateTime.Today}"
                                     SelectedDateChanged="dpVisitDate_SelectedDateChanged"/>
 
-                        <Label Content="День недели:" Foreground="#A09888" FontSize="12" Margin="0,3,0,0"/>
-                        <Label x:Name="lblDayType" Foreground="#C5A46B" FontSize="14" FontWeight="Bold"/>
+                        <Label Content="День недели:" Foreground="#7A756D" FontSize="12" Margin="0,3,0,0"/>
+                        <Label x:Name="lblDayType" Foreground="#B8943A" FontSize="14" FontWeight="Bold"/>
 
                         <Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
@@ -65,22 +65,22 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel>
-                                <Label Content="Время начала" Foreground="#A09888" FontSize="13"/>
+                                <Label Content="Время начала" Foreground="#7A756D" FontSize="13"/>
                                 <ComboBox x:Name="cmbStartTime" Style="{StaticResource DarkComboBox}"
                                           SelectionChanged="CalculateTotal"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
-                                <Label Content="Время окончания" Foreground="#A09888" FontSize="13"/>
+                                <Label Content="Время окончания" Foreground="#7A756D" FontSize="13"/>
                                 <ComboBox x:Name="cmbEndTime" Style="{StaticResource DarkComboBox}"
                                           SelectionChanged="CalculateTotal"/>
                             </StackPanel>
                         </Grid>
 
                         <StackPanel Margin="0,10,0,0">
-                            <Label Content="Стоимость апартамента:" Foreground="#A09888" FontSize="13"/>
-                            <Label x:Name="lblApartmentCost" Content="0 " Foreground="#F5F0E8" FontSize="18" FontWeight="Bold"/>
-                            <Label x:Name="lblPricePerHour" Foreground="#6B6B6B" FontSize="12"/>
+                            <Label Content="Стоимость апартамента:" Foreground="#7A756D" FontSize="13"/>
+                            <Label x:Name="lblApartmentCost" Content="0 " Foreground="#2D2A26" FontSize="18" FontWeight="Bold"/>
+                            <Label x:Name="lblPricePerHour" Foreground="#7A756D" FontSize="12"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -88,7 +88,7 @@
                 <!-- Карточка: Доп. услуги -->
                 <Border Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                     <StackPanel>
-                        <Label Content="3. Дополнительные услуги" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                        <Label Content="3. Дополнительные услуги" Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
 
                         <ComboBox x:Name="cmbServiceCategory" Style="{StaticResource DarkComboBox}"
                                   SelectionChanged="cmbServiceCategory_SelectionChanged"
@@ -127,15 +127,15 @@
                 <!-- Карточка: Итого -->
                 <Border Style="{StaticResource CardBorder}" Margin="0,0,0,15">
                     <StackPanel>
-                        <Label Content="4. Расчет стоимости" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
+                        <Label Content="4. Расчет стоимости" Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
 
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Аренда апартамента:" Foreground="#A09888" FontSize="13"/>
-                            <Label x:Name="lblSubtotalApartment" Content="0 " Grid.Column="1" Foreground="#F5F0E8" FontSize="14"/>
+                            <Label Content="Аренда апартамента:" Foreground="#7A756D" FontSize="13"/>
+                            <Label x:Name="lblSubtotalApartment" Content="0 " Grid.Column="1" Foreground="#2D2A26" FontSize="14"/>
                         </Grid>
 
                         <Grid Margin="0,3">
@@ -143,8 +143,8 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Доп. услуги:" Foreground="#A09888" FontSize="13"/>
-                            <Label x:Name="lblSubtotalServices" Content="0 " Grid.Column="1" Foreground="#F5F0E8" FontSize="14"/>
+                            <Label Content="Доп. услуги:" Foreground="#7A756D" FontSize="13"/>
+                            <Label x:Name="lblSubtotalServices" Content="0 " Grid.Column="1" Foreground="#2D2A26" FontSize="14"/>
                         </Grid>
 
                         <Grid Margin="0,3">
@@ -152,23 +152,23 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label x:Name="lblDiscountLabel" Content="Скидка:" Foreground="#A09888" FontSize="13"/>
+                            <Label x:Name="lblDiscountLabel" Content="Скидка:" Foreground="#7A756D" FontSize="13"/>
                             <Label x:Name="lblDiscount" Content="0 " Grid.Column="1" Foreground="#C06040" FontSize="14"/>
                         </Grid>
 
-                        <Border Height="1" Background="#3C3C3C" Margin="0,8"/>
+                        <Border Height="1" Background="#EDE8E0" Margin="0,8"/>
 
                         <Grid Margin="0,3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="ИТОГО К ОПЛАТЕ:" Foreground="#F5F0E8" FontSize="16" FontWeight="Bold"/>
+                            <Label Content="ИТОГО К ОПЛАТЕ:" Foreground="#2D2A26" FontSize="16" FontWeight="Bold"/>
                             <Label x:Name="lblFinalAmount" Content="0 " Grid.Column="1" 
-                                   Foreground="#C5A46B" FontSize="22" FontWeight="Bold"/>
+                                   Foreground="#B8943A" FontSize="22" FontWeight="Bold"/>
                         </Grid>
 
-                        <Label Content="Способ оплаты" Foreground="#A09888" FontSize="13" Margin="0,15,0,0"/>
+                        <Label Content="Способ оплаты" Foreground="#7A756D" FontSize="13" Margin="0,15,0,0"/>
                         <ComboBox x:Name="cmbPaymentMethod" Style="{StaticResource DarkComboBox}"
                                   SelectedIndex="0">
                             <ComboBoxItem Content="Наличные"/>
@@ -232,18 +232,18 @@
                                         <Style TargetType="Border">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Status}" Value="Active">
-                                                    <Setter Property="Background" Value="#8B6B3A"/>
+                                                    <Setter Property="Background" Value="#C58C40"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Status}" Value="Finished">
-                                                    <Setter Property="Background" Value="#4A5E3A"/>
+                                                    <Setter Property="Background" Value="#5A7D4A"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Status}" Value="Cancelled">
-                                                    <Setter Property="Background" Value="#8B3A3A"/>
+                                                    <Setter Property="Background" Value="#B85450"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Border.Style>
-                                    <TextBlock Text="{Binding Status}" Foreground="#F5F0E8" FontSize="11"/>
+                                    <TextBlock Text="{Binding Status}" Foreground="#2D2A26" FontSize="11"/>
                                 </Border>
                             </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -252,12 +252,12 @@
             </DataGrid>
 
             <!-- Панель управления выбранным визитом -->
-            <Border x:Name="bookingControlPanel" Grid.Row="2" Background="#2D2D2D"
+            <Border x:Name="bookingControlPanel" Grid.Row="2" Background="#FFFFFF"
                     CornerRadius="6" Padding="15" Margin="0,10,0,0" Visibility="Collapsed"
                     VerticalAlignment="Bottom">
                 <StackPanel>
-                    <Label Content="Управление визитом" Style="{StaticResource SubTitleLabel}" Foreground="#C5A46B"/>
-                    <Label x:Name="lblSelectedBookingInfo" Foreground="#A09888" FontSize="12" Margin="0,0,0,10"/>
+                    <Label Content="Управление визитом" Style="{StaticResource SubTitleLabel}" Foreground="#B8943A"/>
+                    <Label x:Name="lblSelectedBookingInfo" Foreground="#7A756D" FontSize="12" Margin="0,0,0,10"/>
 
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="btnStatusBusy" Content="🔴 Занято"
@@ -270,7 +270,7 @@
                                 Width="130" Margin="5,0" Click="btnStatusCleaning_Click"/>
                         <Button x:Name="btnStatusFree" Content="🟢 Свободно"
                                 Style="{StaticResource OutlineButton}"
-                                Foreground="#6B8E5A" BorderBrush="#6B8E5A"
+                                Foreground="#5A7D4A" BorderBrush="#5A7D4A"
                                 Width="130" Click="btnStatusFree_Click"/>
                     </StackPanel>
 

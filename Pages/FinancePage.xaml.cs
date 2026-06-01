@@ -108,7 +108,7 @@ namespace BathComplex.Pages
                 if (profit >= 0)
                 {
                     lblProfit.Foreground = new System.Windows.Media.SolidColorBrush(
-                        System.Windows.Media.Color.FromRgb(0x6B, 0x8E, 0x5A));
+                        System.Windows.Media.Color.FromRgb(0x5A, 0x7D, 0x4A));
                     lblProfit.Content = $"+{profit:N0} ";
                 }
                 else
@@ -205,13 +205,13 @@ namespace BathComplex.Pages
             if (isIncome)
             {
                 btnTabIncome.Background = new System.Windows.Media.SolidColorBrush(
-                    System.Windows.Media.Color.FromRgb(0x3C, 0x3C, 0x3C));
+                    System.Windows.Media.Color.FromRgb(0xED, 0xE8, 0xE0));
                 btnTabExpenses.Background = System.Windows.Media.Brushes.Transparent;
             }
             else
             {
                 btnTabExpenses.Background = new System.Windows.Media.SolidColorBrush(
-                    System.Windows.Media.Color.FromRgb(0x3C, 0x3C, 0x3C));
+                    System.Windows.Media.Color.FromRgb(0xED, 0xE8, 0xE0));
                 btnTabIncome.Background = System.Windows.Media.Brushes.Transparent;
             }
         }
